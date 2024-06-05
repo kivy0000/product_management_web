@@ -1,0 +1,41 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    username: #Your mysql username
+    password: #Your mysql password
+    url: jdbc:mysql://localhost:3306/boot_shop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: hsp
+        reset-enable: false
+        allow:
+      filter:
+        stat:
+          slow-sql-millis: 1000
+          log-slow-sql: true
+          enabled: true
+        wall:
+          enabled: true
+          config:
+            delete-allow: true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+    driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true
+  type-aliases-package: com.kivy0000.beans  #类型别名bean
+#  mapper-locations: #指定mapper地址，使用mapperScan注解替代，也可用默认地址（/mapper/**/*.xml
+mailutil:
+  default-sender:  #Your sender's email
+  default-password:  #Your sender's email authorization code

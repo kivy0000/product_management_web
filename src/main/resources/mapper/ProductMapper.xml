@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.kivy0000.mapper.ProductMapper">
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"  >
+        insert into product_shop
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="productId != null">product_id,</if>
+            <if test="Inventory != null">inventory,</if>
+            <if test="sales != null">sales,</if>
+            <if test="parts != null">parts,</if>
+            <if test="productionTime != null">production_time,</if>
+            <if test="initTime != null">init_time,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id,jdbcType=NUMERIC},</if>
+            <if test="name != null">#{name,jdbcType=VARCHAR},</if>
+            <if test="productId != null">#{productId,jdbcType=VARCHAR},</if>
+            <if test="Inventory != null">#{Inventory,jdbcType=NUMERIC},</if>
+            <if test="sales != null">#{sales,jdbcType=NUMERIC},</if>
+            <if test="parts != null">#{parts,jdbcType=VARCHAR},</if>
+            <if test="productionTime != null">#{productionTime,jdbcType=TIMESTAMP},</if>
+            <if test="initTime != null">#{initTime,jdbcType=TIMESTAMP},</if>
+        </trim>
+    </insert>
+    <update id="updateSelective">
+        update product_shop
+        <set>
+            <if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+            <if test="productId != null">product_id=#{productId,jdbcType=VARCHAR},</if>
+            <if test="Inventory != null">inventory=#{Inventory,jdbcType=NUMERIC},</if>
+            <if test="sales != null">sales=#{sales,jdbcType=NUMERIC},</if>
+            <if test="parts != null">parts=#{parts,jdbcType=VARCHAR},</if>
+            <if test="productionTime != null">production_time=#{productionTime,jdbcType=TIMESTAMP},</if>
+            <if test="initTime != null">init_time=#{initTime,jdbcType=TIMESTAMP},</if>
+        </set>
+        where id = #{id,jdbcType=NUMERIC}
+    </update>
+</mapper>

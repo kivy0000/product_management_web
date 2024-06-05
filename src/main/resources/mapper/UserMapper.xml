@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kivy0000.mapper.UserMapper">
+    <resultMap id="userMap" type="User">
+        <id column="id" property="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="limit" column="limit"/>
+        <result property="context" column="context"/>
+    </resultMap>
+
+    <!-- Integer addUser(User user),注意：应该使用动态sql，防止特殊需求，这里是固定注册字段，暂时忽略-->
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `user` (`username`,`password`,`email`) VALUES (#{username}, MD5(#{password}), #{email} )
+    </insert>
+
+    <!--Integer resetPassword(User user)-->
+    <update id="resetPassword" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+         UPDATE `user` SET `password` = MD5(#{password}) WHERE `username` = #{username} AND `email` = #{email}
+    </update>
+
+    <!--    Integer selectIdByUsername(User user);-->
+    <select id="selectIdByUsername" parameterType="User" resultType="Integer">
+        SELECT `id` from `user` where `username` = #{username}
+    </select>
+
+    <!--    Integer selectIdByUsernameAndEmail(User user);-->
+    <select id="selectIdByUsernameAndEmail" parameterType="User" resultType="Integer">
+        SELECT `id` from `user` where `username` = #{username}  and `email` = #{email}
+    </select>
+
+    <!--    Integer selectIdByUsernameOrEmail(User user);-->
+    <select id="selectIdByUsernameOrEmail" parameterType="User" resultType="Integer">
+        SELECT `id` from `user` where `username` = #{username}  or `email` = #{email}
+    </select>
+
+    <!--    User  selectUserByUsernameAndPassword(User user);-->
+    <select id="selectUserByUsernameAndPassword" parameterType="User" resultMap="userMap">
+        SELECT  `id`, `username`, `password`, `email`, `registertime`, `limit`, `context`  from `user`  where `username` = #{username} and `password` = MD5(#{password})
+    </select>
+
+
+</mapper>
