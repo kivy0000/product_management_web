@@ -44,12 +44,13 @@ public class Product implements Serializable {
     @Min(0)//生效于指定类型Big。。。,与@NotNull冲突,因为@@NotNull适合所有类型，而@Min不同
     private BigInteger sales;
 
-    @NotEmpty(message = "分类不能为空！")//字符串非空校验
+    @NotEmpty(message = "分类不能为空！")//字符串非空校验，Basic functions have been implemented
     private String parts;//分类
 
     //这里是作为json格式的处理，string格式的输出仍需要单独simpleDateFormat
-//    @NotNull(message = "入库日期不能为空！")
-//    @Past(message = "日期不正确")
+    //FIXME，验证有问题，暂时不处理日期验证
+    //    @NotNull(message = "入库日期不能为空！")
+    //    @Past(message = "日期不正确")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date productionTime;
 
