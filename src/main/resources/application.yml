@@ -2,14 +2,14 @@ server:
   port: 9090
 spring:
   datasource:
-    username:  #你需要配置
-    password:  #你需要配置
-    url: jdbc:mysql://localhost:3306/boot_shop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8 #你需要配置
+    username:  #todo 你需要配置
+    password:  #todo 你需要配置
+    url: jdbc:mysql://localhost:3306/boot_shop?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8 #todo 你需要配置
     druid:
       stat-view-servlet:
         enabled: true
-        login-username:  #你需要配置
-        login-password:  #你需要配置
+        login-username:  #todo 你需要配置
+        login-password:  #todo 你需要配置
         reset-enable: false
         allow:
       filter:
@@ -37,5 +37,5 @@ mybatis-plus:
   type-aliases-package: com.kivy0000.beans  #类型别名bean
 #  mapper-locations: #指定mapper地址，使用mapperScan注解替代，也可用默认地址（/mapper/**/*.xml
 mailutil:
-  default-sender:    #你需要配置
-  default-password:    #你需要配置
+  default-sender:    #todo 你需要配置
+  default-password:    #todo 你需要配置
