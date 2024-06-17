@@ -28,7 +28,7 @@
             <!--  1.1.21之前版本不支持LocalDateTime-->
             <version>1.2.5</version>
         </dependency>
-        <!--        mybatisplus-->
+        <!--        mybatis plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>

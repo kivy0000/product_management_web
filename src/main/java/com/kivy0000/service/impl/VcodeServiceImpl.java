@@ -58,11 +58,11 @@ public class VcodeServiceImpl implements VcodeService {
         Integer haveUser = userMapper.selectIdByUsernameOrEmail(user);
 
         //存在账号，但是账号/邮箱不匹配
-        if (!(isUser > 0) && haveUser > 0) {
+        if ((isUser == null || isUser <= 0) && (haveUser != null && haveUser > 0)) {
             return Msg.buildSimpleMsg(500, "failed");
         }
         //填写正确
-        if (isUser > 0) {
+        if (isUser != null&&isUser > 0) {
             //使用默认发件人发送验证码
             String vcode = MailUtil.sendVcode(user.getEmail());
             Logger.getGlobal().log(Level.INFO,
@@ -76,6 +76,6 @@ public class VcodeServiceImpl implements VcodeService {
                     : Msg.buildSimpleMsg(400, "failed");
         }
         //非法用户,未注册
-        return Msg.buildSimpleMsg(300, "failed");
+        return Msg.buildSimpleMsg(400, "failed");
     }
 }

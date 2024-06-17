@@ -42,22 +42,28 @@ public class Result<T> {
         this.data = data;
     }
 
-    public static Result success() {
-        Result result = new Result<>();
+    public static <T> Result<T> success() {
+        Result<T>  result = new Result<>();
         result.setCode("200");
         result.setMsg("success");
         return result;
     }
 
-    public static Result error() {
-        Result result = new Result<>();
+    public static <T> Result<T> error() {
+        Result<T> result = new Result<>();
         result.setCode("400");
         result.setMsg("error");
         return result;
     }
 
-    public static Result warning() {
-        Result result = new Result<>();
+    public static <T> Result<T> warning() {
+        Result<T> result = new Result<>();
+        result.setCode("401");
+        result.setMsg("warning");
+        return result;
+    }
+    public static <T> Result<T> warning(T data) {
+        Result<T> result = new Result<>(data);
         result.setCode("401");
         result.setMsg("warning");
         return result;
@@ -70,8 +76,8 @@ public class Result<T> {
         return result;
     }
 
-    public static Result error(String code, String msg) {
-        Result result = new Result();
+    public static <T> Result<T> error(String code, String msg) {
+        Result<T> result = new Result<>();
         result.setCode(code);
         result.setMsg(msg);
         return result;
