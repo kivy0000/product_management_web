@@ -9,7 +9,7 @@ spring:
       stat-view-servlet:
         enabled: true
         login-username:  #todo 你需要配置
-        login-password:  #todo 你需要配置
+        login-password:  #todo 你需要配置，
         reset-enable: false
         allow:
       filter:

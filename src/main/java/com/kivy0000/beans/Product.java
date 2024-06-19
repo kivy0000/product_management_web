@@ -48,12 +48,12 @@ public class Product implements Serializable {
     private String parts;//分类
 
     //这里是作为json格式的处理，string格式的输出仍需要单独simpleDateFormat
-    //FIXME，验证有问题，暂时不处理日期验证
-    //    @NotNull(message = "入库日期不能为空！")
-    //    @Past(message = "日期不正确")
+//    @NotNull(message = "入库日期不能为空！"),不能与@Past同用
+    @Past(message = "日期不正确")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date productionTime;
 
+//    @NotNull(message = "入库日期不能为空！")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date initTime;
 
