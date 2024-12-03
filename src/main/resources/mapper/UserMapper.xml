@@ -9,6 +9,7 @@
         <result property="email" column="email"/>
         <result property="limit" column="limit"/>
         <result property="context" column="context"/>
+        <result property="balance" column="balance"/>
     </resultMap>
 
     <!-- Integer addUser(User user),注意：应该使用动态sql，防止特殊需求，这里是固定注册字段，暂时忽略-->
@@ -38,7 +39,7 @@
 
     <!--    User  selectUserByUsernameAndPassword(User user);-->
     <select id="selectUserByUsernameAndPassword" parameterType="User" resultMap="userMap">
-        SELECT  `id`, `username`, `password`, `email`, `registertime`, `limit`, `context`  from `user`  where `username` = #{username} and `password` = MD5(#{password})
+        SELECT  `id`, `username`, `password`, `email`, `registertime`, `limit`, `context`,`balance`  from `user`  where `username` = #{username} and `password` = MD5(#{password})
     </select>
 
 

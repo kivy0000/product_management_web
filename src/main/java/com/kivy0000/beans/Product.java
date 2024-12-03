@@ -10,11 +10,10 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author kivy0000
@@ -41,21 +40,21 @@ public class Product implements Serializable {
     @Min(0)//生效于指定类型Big。。。
     private BigInteger Inventory;//库存
 
-    @Min(0)//生效于指定类型Big。。。,与@NotNull冲突,因为@@NotNull适合所有类型，而@Min不同
+    @Min(0)//生效于指定类型Big。。。,与@NotNull冲突,因为@NotNull适合所有类型，而@Min不同
     private BigInteger sales;
 
     @NotEmpty(message = "分类不能为空！")//字符串非空校验
     private String parts;//分类
 
     //这里是作为json格式的处理，string格式的输出仍需要单独simpleDateFormat
-//    @NotNull(message = "入库日期不能为空！"),不能与@Past同用
+    //注意,@Past默认使用的是jvm中的时间,注意时区设置
+    //jsonFormat在接受和响应时都会对格式进行处理
     @Past(message = "日期不正确")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date productionTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime productionTime;
 
-//    @NotNull(message = "入库日期不能为空！")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date initTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime initTime;
 
 
     public Integer getId() {
@@ -106,19 +105,19 @@ public class Product implements Serializable {
         this.parts = parts;
     }
 
-    public Date getProductionTime() {
+    public LocalDateTime getProductionTime() {
         return productionTime;
     }
 
-    public void setProductionTime(Date productionTime) {
+    public void setProductionTime(LocalDateTime productionTime) {
         this.productionTime = productionTime;
     }
 
-    public Date getInitTime() {
+    public LocalDateTime getInitTime() {
         return initTime;
     }
 
-    public void setInitTime(Date initTime) {
+    public void setInitTime(LocalDateTime initTime) {
         this.initTime = initTime;
     }
 }

@@ -108,7 +108,7 @@ public class ProductController {
     @GetMapping("/selectByText/{keyWord}")
     public Result selectByText(@PathVariable String keyWord) {
         List<Product> products = productService.selectByText(keyWord);
-        return products.size() > 0 ? Result.success(products) : Result.warning();
+        return !products.isEmpty() ? Result.success(products) : Result.warning();
     }
 
 
@@ -131,7 +131,7 @@ public class ProductController {
         LambdaQueryWrapper<Product> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.like(Product::getName, keyWord).or().like(Product::getProductId, keyWord);
         Page<Product> page = productService.page(productPage, lambdaQueryWrapper);
-        return page.getRecords().size() > 0 ? Result.success(page) : Result.warning();
+        return !page.getRecords().isEmpty() ? Result.success(page) : Result.warning();
     }
 
     /**
@@ -146,6 +146,6 @@ public class ProductController {
         }
     }
 
-    //TODO 从分页开始看，注意lambada
+
 
 }

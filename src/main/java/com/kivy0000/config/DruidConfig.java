@@ -18,6 +18,6 @@ public class DruidConfig {
     @Bean
     @ConfigurationProperties("spring.datasource")
     public DataSource dataSource() {
-        return new DruidDataSource();
+        return  new DruidDataSource();
     }
 }
